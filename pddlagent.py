@@ -146,17 +146,18 @@ def print_board(x_max=32,y_max=32,print_bottom=True):
 
 def translate_move( move):
     '''translate a move for fast downward to tile world'''
-    if "slip" in move:
+    if "slip-" in move:
        return tw.WAIT
-    if "slide-force-force" in move: # don't move when slide to preserve free move
+    if "slide-" in move: # don't move when slide to preserve free move
        return tw.WAIT
-    if "west" in move:
+    i = move.index("dir-")
+    if move.find("dir-west") == i:
        return tw.WEST
-    if "east" in move:
+    if move.find("dir-east") == i:
        return tw.EAST
-    if "south" in move:
+    if move.find("dir-south") == i:
        return tw.SOUTH
-    if "north" in move:
+    if move.find("dir-north") == i:
        return tw.NORTH
     assert "should never get here"
 
