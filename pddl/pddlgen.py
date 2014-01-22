@@ -13,8 +13,8 @@ def proc_line( line):
 		return []
 
 def produce_problem( board, chips ):
-	print """(define (problem p01-cc)
-	  (:domain chips-challenge)
+	print """(define (problem p01-tw)
+	  (:domain tile-world)
 	  """
 	produce_objects( board, chips )
 	produce_init( board, chips)

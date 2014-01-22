@@ -1,5 +1,13 @@
-This is the planner for Chip's Challange
+Tile World Planner v0.1
+=======================
 
+Methodology:
+The planner agent pddlagent.py encodes the game state into fast-downward PDDL
+problems with varying objectives, uses fast-downward to solve those problems,
+and translates fast-downward output into moves to be executed by the agent
+runner run_agent.py.
+
+Setup:
 This requires the tworld_py interface and should be updated with it.  Also,
 as a part of that we need data, sets, and res directories from the tile world
 source code, or from the levelsets repository.
@@ -9,19 +17,21 @@ $ ln -s ../levelsets/data .
 $ ln -s ../levelsets/sets .
 $ ln -s ../tworld_py/res .
 
-then run with:
-$ python run_agent.py
+The fast-forward library strongly recommends the use of Python 2.7 or newer.
 
-at this point you still have to provide the first move your self, but after that
-the planner is called every turn.
+Usage:
+$ export FAST_DOWNWARD_HOME=/path/to/fast-downward
+$ python2.7 run_agent.py
 
-Right now it is mostlly pddl files which can be solve with fast downward
+At this point you have to press an arrow key to start the planner, which makes
+moves until the level ends.
 
-Example usage
+A unit test pddl/fd_run.sh is provided for debugging and can be run with:
+$ cd pddl/
+$ ./fd_run.sh domain.pddl cc-agent1.pddl
 
-python pddlgen.py > cc_hazard.pddl
-
-cd <fast downard>/src
-translate/translate.py ~/src/chips/planner/pddl/cc_hazard.pddl 
-preprocess/preprocess < output.sas 
-search/downward --search "astar(blind())" < output
+A problem generator script pddl/pddlgen.py is provided and can be run with:
+$ cd pddl/
+$ python pddlgen.py > cc_hazard.pddl
+and can be tested with:
+$ ./fd_run.sh domain.pddl cc_hazard.pddl

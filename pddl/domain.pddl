@@ -1,6 +1,6 @@
-;; defineing chips challenge domain
+;; defining tile-world domain
 
-(define (domain chips-challenge)
+(define (domain tile-world)
   (:requirements :equality :typing )
   ;; These additional requirements may be necessary
   ;;(:requirements :equality :typing :adl :derived-predicates)

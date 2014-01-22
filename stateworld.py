@@ -57,7 +57,7 @@ class StateWorld:
         self.print_board(10,10)
         """produce the pddle for the board in it's current state"""
         print >> out, """(define (problem p01-%d-cc)
-          (:domain chips-challenge)
+          (:domain tile-world)
           """ % self.tick
         max_num = tw.chips_needed() + 5
         produce_objects( out, max_num)
@@ -68,7 +68,7 @@ class StateWorld:
     def write_explore_pddl(self, out):
         """produce the pddl for the board in it's current state to explore"""
         print >> out, """(define (problem p01-%d-cc)
-          (:domain chips-challenge)
+          (:domain tile-world)
           """ % self.tick
         max_num = tw.chips_needed() + 5
         produce_objects( out, max_num)
@@ -79,7 +79,7 @@ class StateWorld:
     def write_chips_pddl(self, out):
         """produce the pddl for the board in it's current state to explore"""
         print >> out, """(define (problem p01-%d-cc)
-          (:domain chips-challenge)
+          (:domain tile-world)
           """ % self.tick
         max_num = tw.chips_needed() + 5
         produce_objects( out, max_num)
@@ -91,7 +91,7 @@ class StateWorld:
     #ugly code duplication, but project due in 2 days!
         """produce the pddl for the board in it's current state to explore"""
         print >> out, """(define (problem p01-%d-cc)
-          (:domain chips-challenge)
+          (:domain tile-world)
           """ % self.tick
         max_num = tw.chips_needed() + 5
         produce_objects( out, max_num)

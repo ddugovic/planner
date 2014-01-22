@@ -13,7 +13,7 @@ cp $2 $FAST_DOWNWARD_HOME/src/tmp-problem.pddl
 cd $FAST_DOWNWARD_HOME/src
 rm output*
 rm sas_plan
-translate/translate.py tmp-domain.pddl tmp-problem.pddl
+python2.7 translate/translate.py tmp-domain.pddl tmp-problem.pddl
 preprocess/preprocess < output.sas
 search/downward --search "astar(blind())" < output
 echo ""

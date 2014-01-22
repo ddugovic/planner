@@ -1,6 +1,7 @@
 #!/usr/bin/python2
 
 import os
+from sys import executable
 from time import time
 import config as cfg
 import traceback
@@ -30,7 +31,7 @@ def run( pddl):
 
 def translate( pddl, domain = 'pddl/domain.pddl', down_home=FAST_DOWNWARD_HOME):
     ''' run fast downward translate, produces output'''
-    code = os.system("%s/src/translate/translate.py %s %s" % (down_home, domain, pddl) 
+    code = os.system("%s %s/src/translate/translate.py %s %s" % (executable, down_home, domain, pddl) 
             + (""">> %s""" % cfg.opts.fast_downward_log if cfg.opts.fast_downward_quiet else ""))
     if code != 0:
         raise Exception("FD translate did not terminate normally")
