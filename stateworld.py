@@ -54,8 +54,8 @@ class StateWorld:
         return len(plan)>0
     
     def write_pddl(self, out):
-        self.print_board(10,10)
-        """produce the pddl for the board in it's current state"""
+        self.print_board(9,9)
+        """produce the pddl for the board in its current state"""
         print >> out, """(define (problem p01-%d-tw)
           (:domain tile-world)
           """ % self.tick
@@ -66,7 +66,7 @@ class StateWorld:
         print >> out, ")"
 
     def write_explore_pddl(self, out):
-        """produce the pddl for the board in it's current state to explore"""
+        """produce the pddl for the board in its current state to explore"""
         print >> out, """(define (problem p01-%d-cc)
           (:domain tile-world)
           """ % self.tick
@@ -77,7 +77,7 @@ class StateWorld:
         print >> out, ")"
 
     def write_chips_pddl(self, out):
-        """produce the pddl for the board in it's current state to explore"""
+        """produce the pddl for the board in its current state to explore"""
         print >> out, """(define (problem p01-%d-cc)
           (:domain tile-world)
           """ % self.tick
@@ -89,7 +89,7 @@ class StateWorld:
         
     def write_random_explore_pddl(self, out):
     #ugly code duplication, but project due in 2 days!
-        """produce the pddl for the board in it's current state to explore"""
+        """produce the pddl for the board in its current state to explore"""
         print >> out, """(define (problem p01-%d-cc)
           (:domain tile-world)
           """ % self.tick
