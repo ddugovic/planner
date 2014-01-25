@@ -103,7 +103,7 @@ class cacheing_pddl_agent:
         return move
 
     def create_pddl_file(self, write_fcn):
-        pddl_file_name = 'pddl/cc-agent%d.pddl' % self.state.tick
+        pddl_file_name = 'pddl/tw-agent%d.pddl' % self.state.tick
         pddl_file = open( pddl_file_name, 'w')
         write_fcn(pddl_file)
         pddl_file.close()

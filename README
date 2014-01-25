@@ -17,7 +17,7 @@ $ ln -s ../levelsets/data .
 $ ln -s ../levelsets/sets .
 $ ln -s ../tworld_py/res .
 
-The fast-forward library strongly recommends the use of Python 2.7 or newer.
+The fast-downward library strongly recommends the use of Python 2.7 or newer.
 
 Usage:
 $ export FAST_DOWNWARD_HOME=/path/to/fast-downward
@@ -28,10 +28,10 @@ moves until the level ends.
 
 A unit test pddl/fd_run.sh is provided for debugging and can be run with:
 $ cd pddl/
-$ ./fd_run.sh domain.pddl cc-agent1.pddl
+$ ./fd_run.sh domain.pddl tw-agent1.pddl
 
 A problem generator script pddl/pddlgen.py is provided and can be run with:
 $ cd pddl/
-$ python pddlgen.py > cc_hazard.pddl
+$ python pddlgen.py > tw_hazard.pddl
 and can be tested with:
-$ ./fd_run.sh domain.pddl cc_hazard.pddl
+$ ./fd_run.sh domain.pddl tw_hazard.pddl

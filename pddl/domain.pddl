@@ -4,7 +4,7 @@
   (:requirements :equality :typing )
   ;; These additional requirements may be necessary
   ;;(:requirements :equality :typing :adl :derived-predicates)
-  (:types type thing location direction number color - object)
+  (:types type thing location direction count color - object)
   (:predicates (floor ?l - location)
                (at ?l - location)
                (chip ?l - location)
@@ -16,7 +16,7 @@
                (dirt ?l - location)
                (gravel ?l - location)
                (thief ?l - location)
-               (has-keys ?c - color ?n - number)
+               (has-keys ?c - color ?n - count)
                (key ?l - location ?c - color)
                (door ?l - location ?c - color)
                (has-boots ?t - type)
@@ -28,9 +28,9 @@
                (ice-wall-dir ?l - location ?in - direction ?out - direction)
                (switch-wall-open ?l - location)
                (switch-wall-closed ?l - location)
-               (switched-walls-open ?x - number )
-               (successor ?n1 - number ?n0 - number)
-               (chips-left ?n - number)
+               (switched-walls-open ?x - count )
+               (successor ?n1 - count ?n0 - count)
+               (chips-left ?n - count)
                (MOVE-DIR ?from ?to - location ?dir - direction))
 
   (:action move-floor
@@ -330,7 +330,7 @@
    )
 
   (:action slide-force-chip
-   :parameters (?from ?to - location ?dir - direction ?ochips ?nchips - number)
+   :parameters (?from ?to - location ?dir - direction ?ochips ?nchips - count)
    :precondition (and (at ?from)
                       (force-floor ?from)
                       (MOVE-DIR ?from ?to ?dir)
@@ -355,7 +355,7 @@
    )
 
   (:action move-force-chip
-   :parameters (?from ?to - location ?dir - direction ?ochips ?nchips - number)
+   :parameters (?from ?to - location ?dir - direction ?ochips ?nchips - count)
    :precondition (and (at ?from)
                       (force-floor ?from)
                       (MOVE-DIR ?from ?to ?dir)
@@ -571,7 +571,7 @@
    )
 
   (:action slip-ice-chip
-   :parameters (?from ?to - location ?dir - direction ?ochips ?nchips - number)
+   :parameters (?from ?to - location ?dir - direction ?ochips ?nchips - count)
    :precondition (and (at ?from)
                       (chip ?to)
                       (MOVE-DIR ?from ?to ?dir)
@@ -737,7 +737,7 @@
    
 ;; maybe make zero a succesor to itself
   (:action move-chip
-   :parameters (?from ?to - location ?dir - direction ?ochips ?nchips - number)
+   :parameters (?from ?to - location ?dir - direction ?ochips ?nchips - count)
    :precondition (and (at ?from)
                       (chip ?to)
                       (not (chip-state sliding))
@@ -761,9 +761,10 @@
 ;; Keys
 
 ;; Move to a tile containing a ?color key, having had ?okeys ?color keys already.
-;; TODO Need to increase 'successor' numbers to accomodate large numbers of keys?
+;; TODO Need to increase 'successor' counts to accomodate large counts of keys?
+;; Maybe wait for the fast-downward library to support numerical planning.
   (:action move-key
-   :parameters (?from ?to - location ?dir - direction ?color - color ?okeys ?nkeys - number)
+   :parameters (?from ?to - location ?dir - direction ?color - color ?okeys ?nkeys - count)
    :precondition (and (at ?from)
                       (key ?to ?color)
                       (MOVE-DIR ?from ?to ?dir)
@@ -786,7 +787,7 @@
    )
 
   (:action slide-force-key
-   :parameters (?from ?to - location ?dir - direction ?color - color ?okeys ?nkeys - number)
+   :parameters (?from ?to - location ?dir - direction ?color - color ?okeys ?nkeys - count)
    :precondition (and (at ?from)
                       (key ?to ?color)
                       (MOVE-DIR ?from ?to ?dir)
@@ -812,7 +813,7 @@
 ;; It seems not.
 ;; Should colors be 'constants' instead of 'objects'?  Seems to work the way it is.
   (:action move-door
-   :parameters (?from ?to - location ?dir - direction ?color - color ?okeys ?nkeys - number)
+   :parameters (?from ?to - location ?dir - direction ?color - color ?okeys ?nkeys - count)
    :precondition (and (at ?from)
                       (door ?to ?color)
                       (MOVE-DIR ?from ?to ?dir)
@@ -840,7 +841,7 @@
    )
 
   (:action slide-force-door
-   :parameters (?from ?to - location ?dir - direction ?color - color ?okeys ?nkeys - number)
+   :parameters (?from ?to - location ?dir - direction ?color - color ?okeys ?nkeys - count)
    :precondition (and (at ?from)
                       (door ?to ?color)
                       (MOVE-DIR ?from ?to ?dir)
@@ -865,7 +866,7 @@
    )
 
   (:action slip-ice-door
-   :parameters (?from ?to - location ?dir - direction ?color - color ?okeys ?nkeys - number)
+   :parameters (?from ?to - location ?dir - direction ?color - color ?okeys ?nkeys - count)
    :precondition (and (at ?from)
                       (door ?to ?color)
                       (MOVE-DIR ?from ?to ?dir)

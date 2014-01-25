@@ -55,8 +55,8 @@ class StateWorld:
     
     def write_pddl(self, out):
         self.print_board(10,10)
-        """produce the pddle for the board in it's current state"""
-        print >> out, """(define (problem p01-%d-cc)
+        """produce the pddl for the board in it's current state"""
+        print >> out, """(define (problem p01-%d-tw)
           (:domain tile-world)
           """ % self.tick
         max_num = tw.chips_needed() + 5
@@ -304,7 +304,7 @@ def produce_objects( out, max_num ):
 
 def produce_numbers( out, num ):
     for n in range( num + 1):
-        print >> out, "n%d - number" % n
+        print >> out, "n%d - count" % n
 
 def produce_locations( out, x_max, y_max ):
     ''' product locations'''
