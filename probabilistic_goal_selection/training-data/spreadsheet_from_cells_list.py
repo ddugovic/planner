@@ -16,6 +16,8 @@ v = not opt.q
 
 infile = open(args[0],'r')
 ofile = open(args[1],'w')
+efile = None
+mfile = None
 
 
 #cells = [None]*9
@@ -65,9 +67,9 @@ while(True):
         for loc in locations:
             if loc == 'p':
                 ofile.write("%d\t%d\n" % (board,i))
-            elif loc == 'e':
+            elif loc == 'e' and efile is not None:
                 efile.write("%d\t%d\n" % (board,i))
-            elif loc == 'm':
+            elif loc == 'm' and mfile is not None:
                 mfile.write("%d\t%d\n" % (board,i))
             i += 1
 

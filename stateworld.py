@@ -390,6 +390,7 @@ def produce_simple_conversions( out, (top,bot), i, j ):
         (pddl_label, val) = typed_converts[bot]
         print >> out, "(%s pos-%d-%d %s)" % (pddl_label, i, j, val)
 
+
 def get_chips_location():
     chip = (tw.Chip_North, tw.Chip_West, tw.Chip_South, tw.Chip_East, tw.Swimming_Chip_West, tw.Swimming_Chip_East, tw.Swimming_Chip_North, tw.Swimming_Chip_South, tw.Pushing_Chip_North, tw.Pushing_Chip_West, tw.Pushing_Chip_East, tw.Pushing_Chip_South)
     for x in range(32):
@@ -400,16 +401,17 @@ def get_chips_location():
     print "error chip isn't on the board?"
     print_board()
 
+
 def print_board(x_max=32,y_max=32,print_bottom=True):
     """note x_max and y_max are then number of tiles printed in that 
         direction"""
     for y in range(y_max):
         print "  ", 
         for x in range(x_max):
-            print "%2x|" % self.get_tile(x,y)[0],
+            print "%2x|" % tw.get_tile(x,y)[0],
         print "\n",
         if print_bottom:
             print "  ",
             for x in range(x_max):
-                print "%2x|" % self.get_tile(x,y)[1],
+                print "%2x|" % tw.get_tile(x,y)[1],
             print "\n",
